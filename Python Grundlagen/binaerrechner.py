@@ -1,5 +1,4 @@
 number = str(input('Welche Zahl soll umgerechnet werden: '))
-#this is a change
 
 def left_number(number_left):
     break_counter = 1
