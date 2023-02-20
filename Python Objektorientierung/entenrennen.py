@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 
 class Duck(ABC):
-    def __init__(self):
+    def __init__(self, typ):
         self.__distance = 0
+        self.__typ = typ
 
     def run(self):
         self.__distance = self.__distance + self.distance_per_run()
@@ -10,22 +11,26 @@ class Duck(ABC):
     def get_distance(self):
         return self.__distance
 
+    def get_typ(self):
+        return self.__typ
+
     @abstractmethod
     def distance_per_run(self):
         pass
 
 class TiringDuck(Duck):
     def __init__(self, factor, step_size):
-        super().__init__()
+        super().__init__('TiringDuck')
         self.__factor = factor
         self.__step_size = step_size
 
     def distance_per_run(self):
-        return self.__step_size * self.__factor
+        self.__step_size = self.__step_size - self.__factor
+        return self.__step_size
 
 class RandomDuck(Duck):
     def __init__(self, a, b):
-        super().__init__()
+        super().__init__('RandomDuck')
         self.__a = a
         self.__b = b
 
@@ -52,4 +57,4 @@ race.add_duck(TiringDuck(0.5, 10))
 race.add_duck(RandomDuck(5, 6))
 
 winner = race.race()
-print(winner)
+print(winner.get_typ())
