@@ -25,8 +25,9 @@ class TiringDuck(Duck):
         self.__step_size = step_size
 
     def distance_per_run(self):
+        local_step = self.__step_size
         self.__step_size = self.__step_size - self.__factor
-        return self.__step_size
+        return local_step
 
 class RandomDuck(Duck):
     def __init__(self, a, b):
