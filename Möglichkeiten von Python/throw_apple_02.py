@@ -1,9 +1,11 @@
 import pgzrun
+import math
 
 PIX = 100
 G = 9.81
-V_X = 4
-V_Y = 8
+V = 5
+DEG = 45
+T = 0
 
 X = 10
 Y = 400
@@ -17,16 +19,16 @@ def apple_place():
     apple.y = Y
 
 def step():
-    global V_Y, X, Y
+    global V, DEG, X, Y, T
 
     if Y > 800:
         quit()
 
     else:
-        X = X + (V_X*(1/300))*100
-        Y = Y - (V_Y*(1/300))*100
+        T = T + (1/300)
 
-        V_Y = V_Y - 9.81*(1/300)
+        X = X + (V*T*math.cos(math.radians(DEG)))*100
+        Y = Y - (V*T*math.sin(math.radians(DEG))*-(G/2)*T**2)*100
 
         apple_place()
 
